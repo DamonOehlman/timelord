@@ -16,15 +16,19 @@ function Duration(days, seconds) {
 
 Duration.prototype = {
     /**
-    ### add(days, seconds)
+    ### add(args*)
     The add method returns a new Duration object that is the value of the current
     duration plus the days and seconds value provided.
     */
-    add: function(days, seconds) {
-        return new Duration(
-            this.days + (days || 0),
-            this.seconds + (seconds || 0)
-        );
+    add: function() {
+        var result = new Duration(this.days, this.seconds);
+
+        for (var ii = arguments.length; ii--; ) {
+            result.days += arguments[ii].days;
+            result.seconds += arguments[ii].seconds;
+        } // for
+
+        return result;
     },
 
     /**
@@ -40,12 +44,12 @@ Duration.prototype = {
         var days, hours, minutes, totalSeconds,
             output = '';
 
-        if (duration.days) {
-            output = duration.days + ' days ';
+        if (this.days) {
+            output = this.days + ' days ';
         } // if
 
-        if (duration.seconds) {
-            totalSeconds = duration.seconds;
+        if (this.seconds) {
+            totalSeconds = this.seconds;
 
             if (totalSeconds >= 3600) {
                 hours = ~~(totalSeconds / 3600);
