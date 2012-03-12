@@ -1,5 +1,5 @@
 //@header
-(function (glob) {
+;(function (glob) {
     // initialise constants
     var DAY_SECONDS = 86400,
         parsers = {},

@@ -3,7 +3,7 @@
 // JS duration functions and parser, focused on ISO8601 format
 // ────────────────────────────────────────────────────────────────────────────────────────
 
-(function (glob) {
+;(function (glob) {
     // initialise constants
     var DAY_SECONDS = 86400,
         parsers = {},
