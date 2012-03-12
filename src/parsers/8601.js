@@ -1,5 +1,5 @@
 // the period regex (the front half of the ISO8601 post the T-split)
-var periodRegex = /^P(\d+Y)?(\d+M)?(\d+D)?$/,
+var periodRegex = /^P(\d+Y)?(\d+M)?(\w+W)?(\d+D)?$/,
     // the time regex (the back half of the ISO8601 post the T-split)
     timeRegex = /^(\d+H)?(\d+M)?(\d+S)?$/;
     
@@ -20,18 +20,21 @@ parsers['8601'] = function(input) {
     periodMatches = periodRegex.exec(durationParts[0]);
     
     // increment the days by the valid number of years, months and days
-    // TODO: add handling for more than just days here but for the moment
-    // that is all that is required
-    days = days + (periodMatches[3] ? parseInt(periodMatches[3].slice(0, -1), 10) : 0);
+    if (periodMatches) {
+        days = days + (periodMatches[3] ? parseInt(periodMatches[3].slice(0, -1), 10) * 7 : 0);
+        days = days + (periodMatches[4] ? parseInt(periodMatches[4].slice(0, -1), 10) : 0);
+    }
     
     // parse the time part
     timeRegex.lastIndex = -1;
     timeMatches = timeRegex.exec(durationParts[1]);
     
     // increment the time by the required number of hour, minutes and seconds
-    seconds = seconds + (timeMatches[1] ? parseInt(timeMatches[1].slice(0, -1), 10) * 3600 : 0);
-    seconds = seconds + (timeMatches[2] ? parseInt(timeMatches[2].slice(0, -1), 10) * 60 : 0);
-    seconds = seconds + (timeMatches[3] ? parseInt(timeMatches[3].slice(0, -1), 10) : 0);
+    if (timeMatches) {
+        seconds = seconds + (timeMatches[1] ? parseInt(timeMatches[1].slice(0, -1), 10) * 3600 : 0);
+        seconds = seconds + (timeMatches[2] ? parseInt(timeMatches[2].slice(0, -1), 10) * 60 : 0);
+        seconds = seconds + (timeMatches[3] ? parseInt(timeMatches[3].slice(0, -1), 10) : 0);
+    }
 
     return new Duration(days, seconds);
 };

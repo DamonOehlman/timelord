@@ -1,16 +1,19 @@
-var Timelord = (function() {
+//@header
+(function (glob) {
     // initialise constants
     var DAY_SECONDS = 86400,
         parsers = {},
-        reDaySeconds = /^([\d\.]+)d\s*([\d\.]*)s?$/;
+        reCommands = /^[\+\-]/,
+        reDaySeconds = /^([\d\.]+)d\s*([\d\.]*)s?$/,
+        reISO8601 = /^PT?\d+/;
     
     //= core/duration
     
     //= parsers/8601
     
-    function _guessParser(duration) {
-        if (reDaySeconds.test(duration)) {
-            return _parseSimple;
+    function _guessParser(input) {
+        if (reISO8601.test(input)) {
+            return parsers['8601'];
         }
     } // _guessParser
     
@@ -25,27 +28,26 @@ var Timelord = (function() {
         return parser(duration);
     } // _parse
     
-    function _parseSimple(text) {
-        var match = reDaySeconds.exec(text);
-
-        return new Duration(parseInt(match[1], 10), parseInt(match[2], 10));
-    } // _parseSimple
-    
-    /* exports */
-
-    return function() {
-        var args = Array.prototype.slice.call(arguments, 0);
-        
-        // if we have been passed a string, then pass to internal parser
-        if (typeof args[0] == 'string' || args[0] instanceof String) {
-            return _parse.apply(null, args);
-        }
-        else if (typeof args[0] == 'object') {
-            return new Duration(args[0]);
-        }
-        
-        return {
+    function timelord(input) {
+        // parse the text
+        if (typeof input == 'string' || input instanceof String) {
+            var parser = _guessParser(input);
             
-        };
-    };
-})();
+            if (parser) {
+                return parser(input);
+            }
+            else {
+                var match = reDaySeconds.exec(input);
+
+                return new Duration(parseInt(match[1], 10), parseInt(match[2], 10));
+            }
+        }
+        else if (typeof input == 'object') {
+            return new Duration(input);
+        }
+        
+        return undefined;
+    }
+    
+    //@export timelord
+})(this);

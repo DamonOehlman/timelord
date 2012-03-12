@@ -7,6 +7,9 @@ function Duration(p1, p2) {
         this.days = p1.d || p1.days || 0;
         this.seconds = p1.s || p1.seconds || 0;
     } // if..else
+    
+    // normalize
+    this.normalize();
 } // Duration
 
 Duration.prototype.add = function() {
@@ -18,21 +21,40 @@ Duration.prototype.add = function() {
         result.seconds += arguments[ii].seconds;
     } // for
     
-    return result;
+    return result.normalize();
 };
 
 Duration.prototype.clone = function() {
     return new Duration(this.days, this.seconds);
 }; // clone
+
+Duration.prototype.normalize = function() {
+    var secondDays = this.seconds / DAY_SECONDS | 0;
     
-Duration.prototype.toString = function() {
-    // TODO: Im sure this can be implemented better....
+    this.days += secondDays;
+    this.seconds %= DAY_SECONDS;
     
-    var days, hours, minutes, totalSeconds,
-        output = '';
+    return this;
+};
+
+Duration.prototype.ticks = function() {
+    return (this.days * DAY_SECONDS + this.seconds) * 1000;
+};
+    
+Duration.prototype.toString = function(formatter) {
+    var output;
+    
+    // ensure normalized
+    this.normalize();
+
+    // if the format is not defined, return the simple format
+    if (! format) {
+        output = this.days + 'd' + this.seconds + 's';
+    } // if
         
+    /*
     if (this.days) {
-        output = this.days + ' days ';
+        output += this.days + 'd';
     } // if
     
     if (this.seconds) {
@@ -70,6 +92,7 @@ Duration.prototype.toString = function() {
                     '0' + totalSeconds) + ' sec';
         } // if..else
     } // if
+    */
     
     return output;
 };
