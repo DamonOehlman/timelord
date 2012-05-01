@@ -50,17 +50,12 @@
   };
       
   Duration.prototype.toString = function(format) {
-      var output = [];
-      
       // ensure normalized
       this.normalize();
   
       // if the format is not defined, return the simple format
-      if (! format) {
-          return this.days + 'd' + this.seconds + 's';
-      }
-      else {
-          var hours, minutes;
+      if (typeof format == 'undefined' || format) {
+          var hours, minutes, output = [];
           
           if (this.days) {
               output.push(this.days + ' days');
@@ -103,9 +98,12 @@
                   );
               } // if..else
           } // if
-      }
       
-      return output;
+          return output.join(' ');
+      }
+      else {
+          return this.days + 'd' + this.seconds + 's';
+      }
   };
   
   // the period regex (the front half of the ISO8601 post the T-split)
