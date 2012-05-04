@@ -47,7 +47,7 @@ Duration.prototype.toString = function(format) {
 
     // if the format is not defined, return the simple format
     if (typeof format == 'undefined' || format) {
-        var hours, minutes, output = [];
+        var hours, minutes, totalSeconds, output = [];
         
         if (this.days) {
             output.push(this.days + ' days');
