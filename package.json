@@ -7,7 +7,7 @@
     "parsing",
     "duration"
   ],
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "pkg/cjs/timelord.js",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
