@@ -1,3 +1,5 @@
+
+// req: 
 // initialise constants
 var DAY_SECONDS = 86400,
     parsers = {},
@@ -183,5 +185,3 @@ function timelord(input) {
     
     return undefined;
 }
-
-module.exports = timelord;

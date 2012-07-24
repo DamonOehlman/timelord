@@ -1,3 +1,6 @@
+
+
+
 // initialise constants
 var DAY_SECONDS = 86400,
     parsers = {},
@@ -182,4 +185,8 @@ function timelord(input) {
     }
     
     return undefined;
+}
+
+if (typeof timelord != 'undefined') {
+    module.exports = timelord;
 }

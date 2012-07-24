@@ -8,7 +8,7 @@
     "duration"
   ],
   "version": "0.1.4",
-  "main": "pkg/cjs/timelord.js",
+  "main": "dist/commonjs/timelord.js",
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   },

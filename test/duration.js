@@ -1,4 +1,4 @@
-var timelord = require('../pkg/cjs/timelord'),
+var timelord = require('../dist/commonjs/timelord'),
     expect = require('expect.js');
 
 describe('simple duration parsing and initialization', function() {
