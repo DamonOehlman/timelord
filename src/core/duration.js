@@ -50,7 +50,7 @@ Duration.prototype.toString = function(format) {
         var hours, minutes, totalSeconds, output = [];
         
         if (this.days) {
-            output.push(this.days + ' days');
+            output.push(this.days + (this.days > 1 ? ' days' : ' day'));
         } // if
     
         if (this.seconds) {
@@ -75,18 +75,18 @@ Duration.prototype.toString = function(format) {
                     (minutes ? 
                         (minutes > 10 ? 
                             minutes : 
-                            '0' + minutes) + ' min' 
+                            '0' + minutes) + (minutes > 1 ? ' mins' : ' min') 
                         : '')
                 );
             }
             else if (minutes) {
-                output.push(minutes + 'min');
+                output.push(minutes + (minutes > 1 ? ' mins' : ' min'));
             }
             else if (totalSeconds > 0) {
                 output.push(
                     (totalSeconds > 10 ? 
                         totalSeconds : 
-                        '0' + totalSeconds) + ' sec'
+                        '0' + totalSeconds) + (totalSeconds > 1 ? ' secs' : ' sec')
                 );
             } // if..else
         } // if
