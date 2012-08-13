@@ -33,15 +33,27 @@ describe('duration formatting', function() {
         expect(test.toString(false)).to.equal('11d49600s');
     });
     
-    it('parses and formats strings using IS08601 definitions', function() {
+    it('parses and formats strings using IS08601 definitions (seconds only, plural)', function() {
         var test = timelord('P0DT0H0M49S');
         
-        expect(test.toString()).to.equal('49 sec');
+        expect(test.toString()).to.equal('49 secs');
     });
     
-    it('parses and formats strings using IS08601 definitions', function() {
+    it('parses and formats strings using IS08601 definitions (seconds only, singular form)', function() {
+        var test = timelord('P0DT0H0M1S');
+        
+        expect(test.toString()).to.equal('01 sec');
+    });
+
+    it('parses and formats strings using IS08601 definitions (full time, singular form)', function() {
+        var test = timelord('P0DT1H42M12S');
+        
+        expect(test.toString()).to.equal('1 hr 42 mins');
+    });
+
+    it('parses and formats strings using IS08601 definitions (full time, plural)', function() {
         var test = timelord('P0DT2H42M12S');
         
-        expect(test.toString()).to.equal('2 hrs 42 min');
+        expect(test.toString()).to.equal('2 hrs 42 mins');
     });
 });
