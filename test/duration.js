@@ -1,4 +1,4 @@
-var timelord = require('../dist/commonjs/timelord'),
+var timelord = require('../timelord'),
     expect = require('expect.js');
 
 describe('simple duration parsing and initialization', function() {

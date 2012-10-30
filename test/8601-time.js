@@ -1,4 +1,4 @@
-var timelord = require('../dist/commonjs/timelord'),
+var timelord = require('../timelord'),
     expect = require('expect.js');
 
 describe('ISO8601 parsing (time section)', function() {

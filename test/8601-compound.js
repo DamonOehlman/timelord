@@ -39,7 +39,7 @@ P0DT0H0M12S
 P0DT0H0M57S
 */
 
-var timelord = require('../dist/commonjs/timelord'),
+var timelord = require('../timelord'),
     expect = require('expect.js');
 
 describe('ISO8601 parsing (compound samples)', function() {
