@@ -1,0 +1,15 @@
+{
+  "name": "timelord",
+  "repo": "DamonOehlman/timelord",
+  "description": "JS duration functions and parser, focused on ISO8601 format",
+  "version": "0.1.6",
+  "keywords": [
+    "time",
+    "parsing",
+    "duration"
+  ],
+  "main": "timelord.js",
+  "scripts": [
+    "timelord.js"
+  ]
+}
