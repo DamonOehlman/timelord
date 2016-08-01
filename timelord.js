@@ -3,9 +3,9 @@
  * JS duration functions and parser, focused on ISO8601 format
  * 
  * -meta---
- * version:    0.1.6
- * builddate:  2012-10-30T02:33:30.335Z
- * generator:  interleave@0.5.23
+ * version:    1.0.0
+ * builddate:  2016-08-01T23:13:26.812Z
+ * generator:  interleave@0.6.1
  * 
  * 
  * 
