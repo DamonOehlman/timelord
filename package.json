@@ -9,9 +9,6 @@
   ],
   "version": "0.1.8",
   "main": "timelord.js",
-  "engines": {
-    "node": ">= 0.6.x < 0.9.0"
-  },
   "dependencies": {},
   "devDependencies": {
     "expect.js": "0.1.x",
@@ -26,7 +23,9 @@
     "url": "http://github.com/DamonOehlman/timelord/issues"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "prepublish": "npm run package",
+    "package": "interleave --output ./"
   },
   "contributors": [],
   "optionalDependencies": {}
